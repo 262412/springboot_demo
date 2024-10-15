@@ -1,6 +1,6 @@
 package com.example.springboot_demo.service.impl;
 
-import com.springboot_demo.service.DeptService;
+import com.example.springboot_demo.service.DeptService;
 import org.springframework.stereotype.Service;
 
 @Service
