@@ -3,8 +3,8 @@ package com.example.springboot_demo.controller;
 import com.example.springboot_demo.pojo.Dept;
 import com.example.springboot_demo.pojo.Result;
 import com.example.springboot_demo.service.DeptService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+//import io.swagger.annotations.Api;
+//import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +20,7 @@ import java.util.logging.Logger;
 @Slf4j
 @RestController
 @RequestMapping("/deps")
-@Api(value = "部门信息", tags = "部门管理")
+//@Api(value = "部门信息", tags = "部门管理")
 public class DeptController {
     // 注入DeptService接口的实现类，用于操作部门信息
     @Autowired
@@ -34,11 +34,11 @@ public class DeptController {
      * @return 返回一个成功的Result统一格式对象，表示操作成功
      */
     @GetMapping("/search")
-    @ApiOperation("查询全部部门数据")
+//    @ApiOperation("查询全部部门数据")
     public Result list(){
         log.info("查询全部部门数据");
         List<Dept> deptList = deptService.list();
-        return Result.success();
+        return Result.success(deptList);
     }
 
 
