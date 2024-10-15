@@ -1,6 +1,6 @@
-package com.itheima.service.impl;
+package com.example.springboot_demo.service.impl;
 
-import com.itheima.service.DeptService;
+import com.springboot_demo.service.DeptService;
 import org.springframework.stereotype.Service;
 
 @Service

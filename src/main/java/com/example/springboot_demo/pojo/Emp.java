@@ -1,4 +1,4 @@
-package com.itheima.pojo;
+package com.example.springboot_demo.pojo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

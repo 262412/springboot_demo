@@ -1,4 +1,4 @@
-package com.itheima.service;
+package com.example.springboot_demo.service;
 
 /**
  * 部门管理

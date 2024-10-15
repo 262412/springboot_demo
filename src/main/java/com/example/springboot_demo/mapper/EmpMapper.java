@@ -1,4 +1,4 @@
-package com.itheima.mapper;
+package com.example.springboot_demo.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 

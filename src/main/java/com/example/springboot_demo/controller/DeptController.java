@@ -1,4 +1,4 @@
-package com.itheima.controller;
+package com.example.springboot_demo.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 
