@@ -5,9 +5,6 @@ import com.example.springboot_demo.pojo.Dept;
 import java.util.List;
 
 /**
- * 部门管理
- */
-/**
  * DeptService接口，定义了部门服务的操作
  * 该接口提供了一个方法来获取部门列表
  */

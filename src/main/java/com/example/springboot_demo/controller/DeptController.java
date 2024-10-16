@@ -10,14 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.logging.Logger;
 
 /**
  * 部门管理Controller
  */
 @Slf4j
 @RestController
-//@RequestMapping("/depts")
+@RequestMapping("/depts")
 //@Api(value = "部门信息", tags = "部门管理")
 public class DeptController {
     // 注入DeptService接口的实现类，用于操作部门信息
@@ -31,7 +30,7 @@ public class DeptController {
     *
     * @return 返回一个成功的Result统一格式对象，表示操作成功
     */
-    @GetMapping("/depts")
+    @GetMapping
 // @ApiOperation("查询全部部门数据")
     public Result list(){
     // 记录查询全部部门数据的日志
@@ -48,7 +47,7 @@ public class DeptController {
      * @param id 部门ID，用于标识特定的部门
      * @return 返回操作结果，包含成功与否的信息
      */
-    @DeleteMapping("/depts/{id}")
+    @DeleteMapping("/{id}")
     public  Result delete(@PathVariable Integer id){
         // 记录删除部门的日志，包括部门ID
         log.info("根据id删除部门:{}", id);
@@ -65,7 +64,7 @@ public class DeptController {
      * @param dept 通过请求体传递的部门对象，包含部门的相关信息
      * @return 返回一个表示操作成功的Result对象，包含状态码和消息
      */
-    @PostMapping("/depts")
+    @PostMapping
     public Result add(@RequestBody Dept dept){
         // 记录日志，用于审计和跟踪部门信息的添加
         log.info("新增部门:{}", dept);

@@ -12,8 +12,8 @@ import java.util.List;
  * 部门管理
  */
 @Mapper
-/**
- * DeptMapper接口，定义了与dept表相关的数据操作方法
+/*
+  DeptMapper接口，定义了与dept表相关的数据操作方法
  */
 public interface DeptMapper {
     /**
