@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springboot_demo.mapper.EmpMapper">
+
+    <!--
+        查询员工列表的SQL语句
+        该语句使用动态SQL元素来根据传入的参数条件进行查询
+        结果类型指定为Emp类，表示查询结果将映射为Emp对象
+    -->
+    <select id="list" resultType="com.example.springboot_demo.pojo.Emp">
+        select *
+        from emp
+        <where>
+            <!--
+                如果name参数不为空，则添加name的模糊匹配条件
+                使用concat函数将%作为通配符添加到name的两侧，实现模糊查询
+            -->
+            <if test = "name != null">
+                name like concat('%',#{name},'%')
+            </if>
+            <!--
+                如果gender参数不为空，则添加gender的精确匹配条件
+                使用and连接词添加到已有条件之后
+            -->
+            <if test = "gender != null">
+                and gender = #{gender}
+            </if>
+            <!--
+                如果begin和end参数都不为空，则添加entrydate的范围查询条件
+                使用and连接词添加到已有条件之后
+            -->
+            <if test = "begin != null and end != null">
+                and entrydate between #{begin} and #{end}
+            </if>
+        </where>
+        <!-- 按照update_time字段降序排序 -->
+        order by update_time desc
+    </select>
+</mapper>
