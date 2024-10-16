@@ -2,6 +2,7 @@ package com.example.springboot_demo.mapper;
 
 import com.example.springboot_demo.pojo.Dept;
 import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -32,5 +33,13 @@ public interface DeptMapper {
      */
     @Delete("delete from dept where id = #{id}")
     void deleteById(Integer id);
+
+    /**
+     * 使用动态SQL插入语句插入一个部门对象
+     *
+     * @param dept 要插入的部门对象，包含name, createTime, updateTime属性
+     */
+    @Insert("insert into dept(name,create_time,update_time) values(#{name},#{createTime},#{updateTime})")
+    void add(Dept dept);
 
 }

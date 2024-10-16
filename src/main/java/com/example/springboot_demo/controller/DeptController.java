@@ -57,4 +57,21 @@ public class DeptController {
         // 返回成功结果
         return Result.success();
     }
+    /**
+     * 添加新部门
+     * 该方法用于接收一个部门对象，并将其添加到系统中它展示了如何通过HTTP POST请求来新增部门，
+     * 并使用部门服务将部门信息保存到数据库中
+     *
+     * @param dept 通过请求体传递的部门对象，包含部门的相关信息
+     * @return 返回一个表示操作成功的Result对象，包含状态码和消息
+     */
+    @PostMapping("/depts")
+    public Result add(@RequestBody Dept dept){
+        // 记录日志，用于审计和跟踪部门信息的添加
+        log.info("新增部门:{}", dept);
+        // 调用部门服务的添加方法，将部门信息保存到数据库中
+        deptService.add(dept);
+        // 返回操作成功的结果
+        return Result.success();
+    }
 }

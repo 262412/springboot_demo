@@ -39,4 +39,15 @@ public class DeptServiceImpl implements DeptService {
     public void delete(Integer id) {
         deptMapper.deleteById(id);
     }
+
+    /**
+     * 重写add方法，实现部门信息的添加
+     * 该方法通过调用deptMapper的add方法，将部门信息持久化到数据库中
+     *
+     * @param dept 部门对象，包含要添加的部门的所有信息
+     */
+    @Override
+    public void add(Dept dept) {
+        deptMapper.add(dept);
+    }
 }
