@@ -30,5 +30,9 @@ public interface DeptService {
      *            包括部门ID、部门名称、部门描述等属性
      */
     void add(Dept dept);
+
+    Dept get(Integer id);
+
+    void update(Dept dept);
 }
 

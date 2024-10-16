@@ -1,10 +1,7 @@
 package com.example.springboot_demo.mapper;
 
 import com.example.springboot_demo.pojo.Dept;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -24,6 +21,9 @@ public interface DeptMapper {
     @Select("select * from dept")
     List<Dept> list();
 
+    @Select("select * from dept where id = #{id}")
+    Dept findById(Integer id);
+
     /**
      * 根据部门ID删除部门信息
      * 此方法使用MyBatis的注解@Delete，指定删除操作的SQL语句
@@ -42,4 +42,6 @@ public interface DeptMapper {
     @Insert("insert into dept(name,create_time,update_time) values(#{name},#{createTime},#{updateTime})")
     void add(Dept dept);
 
+    @Update("update dept set name = #{name} where id = #{id}")
+    void update(Dept dept);
 }

@@ -41,6 +41,16 @@ public class DeptController {
     return Result.success(deptList);
     }
 
+    @GetMapping("/{id}")
+    public Result get(@PathVariable Integer id){
+        // 记录查询部门信息的日志，包括部门ID
+        log.info("根据id查询部门:{}", id);
+        // 调用部门服务的get方法，传入部门ID，获取部门对象
+        Dept dept = deptService.get(id);
+        // 返回一个成功的Result对象，包含部门对象
+        return Result.success(dept);
+    }
+
     /**
      * 根据部门ID删除部门信息
      *
@@ -70,6 +80,16 @@ public class DeptController {
         log.info("新增部门:{}", dept);
         // 调用部门服务的添加方法，将部门信息保存到数据库中
         deptService.add(dept);
+        // 返回操作成功的结果
+        return Result.success();
+    }
+
+    @PutMapping
+    public Result update(@RequestBody Dept dept){
+        // 记录日志，用于审计和跟踪部门信息的更新
+        log.info("修改部门:{}", dept);
+        // 调用部门服务的更新方法，将部门信息保存到数据库中
+        deptService.update(dept);
         // 返回操作成功的结果
         return Result.success();
     }
