@@ -41,6 +41,7 @@ public class DeptController {
     return Result.success(deptList);
     }
 
+    // 处理GET请求，路径包含一个名为id的路径变量
     @GetMapping("/{id}")
     public Result get(@PathVariable Integer id){
         // 记录查询部门信息的日志，包括部门ID
@@ -84,6 +85,14 @@ public class DeptController {
         return Result.success();
     }
 
+    /**
+     * 更新部门信息
+     * 本方法通过接收一个部门对象，将其视为更新后的部门信息
+     * 主要功能包括：记录更新操作的日志、调用部门服务的更新方法保存更新后的信息到数据库、返回操作成功的结果
+     *
+     * @param dept 通过请求体传递的更新后的部门对象
+     * @return 返回一个表示操作成功的结果对象
+     */
     @PutMapping
     public Result update(@RequestBody Dept dept){
         // 记录日志，用于审计和跟踪部门信息的更新

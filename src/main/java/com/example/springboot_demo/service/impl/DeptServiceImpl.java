@@ -2,7 +2,6 @@ package com.example.springboot_demo.service.impl;
 
 import com.example.springboot_demo.mapper.DeptMapper;
 import com.example.springboot_demo.pojo.Dept;
-import com.example.springboot_demo.pojo.Result;
 import com.example.springboot_demo.service.DeptService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -55,11 +54,24 @@ public class DeptServiceImpl implements DeptService {
         deptMapper.add(dept);
     }
 
+    /**
+     * 根据ID获取部门信息
+     * 此方法通过调用deptMapper的findById方法实现，根据Integer类型的ID返回相应的Dept对象
+     *
+     * @param id 部门的唯一标识符
+     * @return 返回对应的部门对象，如果找不到则返回null
+     */
     @Override
     public Dept get(Integer id) {
         return deptMapper.findById(id);
     }
 
+    /**
+     * 更新部门信息
+     * 此方法通过调用deptMapper的update方法实现，用于更新Dept对象的信息
+     *
+     * @param dept 需要更新的部门对象，包含所有需要更新的信息
+     */
     @Override
     public void update(Dept dept) {
         deptMapper.update(dept);
