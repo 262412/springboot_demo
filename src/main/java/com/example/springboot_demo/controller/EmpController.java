@@ -6,16 +6,16 @@ import com.example.springboot_demo.service.EmpService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  * 员工管理Controller
  */
 @Slf4j
+@RequestMapping("/emps")
 @RestController
 public class EmpController {
 
@@ -24,7 +24,7 @@ public class EmpController {
     private EmpService empService;
 
     // 处理HTTP GET请求，路径为"/emps"，用于分页查询员工信息
-    @GetMapping("/emps")
+    @GetMapping
     public Result page(@RequestParam(defaultValue = "1") Integer page,
                        @RequestParam(defaultValue = "10") Integer pageSize,
                        String name, Short gender,
@@ -36,6 +36,15 @@ public class EmpController {
         PageBean pageBean = empService.page(page, pageSize, name, gender, begin, end);
         // 返回查询结果，封装为Result对象，表示操作成功，并携带分页数据
         return Result.success(pageBean);
+    }
+    @DeleteMapping("/{ids}")
+    public Result delete(@PathVariable List<Integer> ids){
+        // 将逗号分隔的ID字符串转换为数组，方便后续处理
+        log.debug("批量删除操作，ids：{}", ids);
+        // 调用EmpService的批量删除方法，传入要删除的员工ID数组
+        empService.delete(ids);
+        // 返回删除结果，表示操作成功
+        return Result.success();
     }
 
 }

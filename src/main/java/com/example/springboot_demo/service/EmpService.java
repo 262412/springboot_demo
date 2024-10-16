@@ -3,6 +3,7 @@ package com.example.springboot_demo.service;
 import com.example.springboot_demo.pojo.PageBean;
 
 import java.time.LocalDate;
+import java.util.List;
 
 /*
  * 员工管理
@@ -28,5 +29,7 @@ public interface EmpService {
      *         PageBean对象封装了分页查询的结果，包括当前页的员工数据、总记录数、总页数等信息
      */
     PageBean page(Integer page, Integer pageSize, String name, Short gender, LocalDate begin, LocalDate end);
+
+    void delete(List<Integer> ids);
 }
 

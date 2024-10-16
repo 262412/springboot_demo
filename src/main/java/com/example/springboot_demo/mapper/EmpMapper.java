@@ -39,4 +39,5 @@ public interface EmpMapper {
     public List<Emp> list(String name, Short gender, LocalDate begin, LocalDate end);
 
 
+    void delete(List<Integer> ids);
 }

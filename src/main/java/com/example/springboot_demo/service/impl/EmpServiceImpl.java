@@ -47,4 +47,9 @@ public class EmpServiceImpl implements EmpService {
         return new PageBean(p.getTotal(), p.getResult()); // 将总记录数和分页数据封装为PageBean对象并返回
     }
 
+    @Override
+    public void delete(List<Integer> ids) {
+        empMapper.delete(ids);
+    }
+
 }
