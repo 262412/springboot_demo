@@ -14,7 +14,6 @@ import java.util.List;
  * DeptMapper接口，定义了与dept表相关的数据操作方法
  */
 public interface DeptMapper {
-
     /**
      * 查询dept表中的所有数据
      *

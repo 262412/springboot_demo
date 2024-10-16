@@ -19,27 +19,31 @@ import java.util.logging.Logger;
  */
 @Slf4j
 @RestController
-@RequestMapping("/deps")
+@RequestMapping("/depts")
 //@Api(value = "部门信息", tags = "部门管理")
 public class DeptController {
     // 注入DeptService接口的实现类，用于操作部门信息
     @Autowired
     private DeptService deptService;
 
-    /**
-     * 查询全部部门数据
-     * 此方法用于响应查询所有部门数据的请求它将返回一个成功的响应结果，
-     * 具体的部门数据需要通过调用此方法来获取
-     *
-     * @return 返回一个成功的Result统一格式对象，表示操作成功
-     */
-    @GetMapping("/search")
-//    @ApiOperation("查询全部部门数据")
-    public Result list(){
-        log.info("查询全部部门数据");
-        List<Dept> deptList = deptService.list();
-        return Result.success(deptList);
-    }
+/**
+ * 查询全部部门数据
+ * 此方法用于响应查询所有部门数据的请求它将返回一个成功的响应结果，
+ * 具体的部门数据需要通过调用此方法来获取
+ *
+ * @return 返回一个成功的Result统一格式对象，表示操作成功
+ */
+@GetMapping("/search")
+// @ApiOperation("查询全部部门数据")
+public Result list(){
+    // 记录查询全部部门数据的日志
+    log.info("查询全部部门数据");
+    // 调用部门服务的list方法获取所有部门数据列表
+    List<Dept> deptList = deptService.list();
+    // 返回一个成功的Result对象，包含部门数据列表
+    return Result.success(deptList);
+}
+
 
 
 }
