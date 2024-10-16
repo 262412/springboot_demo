@@ -41,6 +41,9 @@ dependencies {
     //implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.4'
     //implementation 'com.github.pagehelper:pagehelper:4.1.6'
     implementation 'com.github.pagehelper:pagehelper-spring-boot-starter:1.4.6'
+    implementation 'com.aliyun.oss:aliyun-sdk-oss:3.17.4'
+
+
 }
 
 tasks.named('test') {
