@@ -3,15 +3,23 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.springboot_demo.mapper.EmpMapper">
+    <!-- 添加员工信息 -->
+    <insert id="add">
+        <!-- 将员工信息插入到emp表中 -->
+        insert into emp(username,password,name,gender,image,job,entrydate,dept_id,create_time,update_time)
+        values(#{username},#{password},#{name},#{gender},#{image},#{job},#{entrydate},#{deptId},#{createTime},#{updateTime})
+    </insert>
+
+    <!-- 删除员工信息 -->
     <delete id="delete">
-        delete
+        <!-- 删除emp表中指定id的员工信息 -->
         from emp
         where id in
+        <!-- 遍历传入的ids集合，每个id作为删除条件 -->
         <foreach collection="ids" item="id" separator="," open = "(" close = ")">
             #{id}
         </foreach>
     </delete>
-
     <!--
         查询员工列表的SQL语句
         该语句使用动态SQL元素来根据传入的参数条件进行查询

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -47,9 +48,28 @@ public class EmpServiceImpl implements EmpService {
         return new PageBean(p.getTotal(), p.getResult()); // 将总记录数和分页数据封装为PageBean对象并返回
     }
 
+    /**
+     * 批量删除员工信息
+     *
+     * @param ids 员工ID列表，用于标识需要删除的员工
+     */
     @Override
     public void delete(List<Integer> ids) {
         empMapper.delete(ids);
+    }
+
+    /**
+     * 添加新员工
+     *
+     * 在添加员工信息前，设置员工的创建时间和更新时间确保员工信息的准确性和完整性
+     *
+     * @param emp 员工对象，包含员工的详细信息
+     */
+    @Override
+    public void add(Emp emp) {
+        emp.setUpdateTime(LocalDateTime.now());
+        emp.setCreateTime(LocalDateTime.now());
+        empMapper.add(emp);
     }
 
 }

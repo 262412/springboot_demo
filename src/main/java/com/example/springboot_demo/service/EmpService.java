@@ -1,5 +1,6 @@
 package com.example.springboot_demo.service;
 
+import com.example.springboot_demo.pojo.Emp;
 import com.example.springboot_demo.pojo.PageBean;
 
 import java.time.LocalDate;
@@ -30,6 +31,18 @@ public interface EmpService {
      */
     PageBean page(Integer page, Integer pageSize, String name, Short gender, LocalDate begin, LocalDate end);
 
+    /**
+     * 删除指定ID列表对应的数据
+     *
+     * @param ids 要删除的数据的ID列表
+     */
     void delete(List<Integer> ids);
+
+    /**
+     * 向系统中添加一个新的员工对象
+     *
+     * @param emp 要添加的员工对象
+     */
+    void add(Emp emp);
 }
 

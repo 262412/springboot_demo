@@ -1,5 +1,6 @@
 package com.example.springboot_demo.controller;
 
+import com.example.springboot_demo.pojo.Emp;
 import com.example.springboot_demo.pojo.PageBean;
 import com.example.springboot_demo.pojo.Result;
 import com.example.springboot_demo.service.EmpService;
@@ -37,6 +38,8 @@ public class EmpController {
         // 返回查询结果，封装为Result对象，表示操作成功，并携带分页数据
         return Result.success(pageBean);
     }
+
+    // 处理HTTP DELETE请求，路径为"/emps/{ids}"，用于批量删除员工
     @DeleteMapping("/{ids}")
     public Result delete(@PathVariable List<Integer> ids){
         // 将逗号分隔的ID字符串转换为数组，方便后续处理
@@ -47,4 +50,14 @@ public class EmpController {
         return Result.success();
     }
 
+    // 处理HTTP POST请求，路径为"/emps"，用于添加员工
+    @PostMapping
+    public Result add(@RequestBody Emp emp){
+        // 记录添加员工信息的日志，包括员工信息
+        log.info("添加员工，员工信息：{}", emp);
+        // 调用EmpService的添加员工方法，传入员工信息，执行添加操作
+        empService.add(emp);
+        // 返回添加结果，表示操作成功
+        return Result.success();
+    }
 }
