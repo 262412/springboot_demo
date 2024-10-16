@@ -29,4 +29,14 @@ public class DeptServiceImpl implements DeptService {
     public List<Dept> list() {
         return deptMapper.list();
     }
+
+    /**
+     * 实现删除操作，通过ID删除对应的部门信息
+     *
+     * @param id 部门的唯一标识符，用于定位要删除的部门信息
+     */
+    @Override
+    public void delete(Integer id) {
+        deptMapper.deleteById(id);
+    }
 }

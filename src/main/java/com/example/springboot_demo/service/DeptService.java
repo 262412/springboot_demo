@@ -18,5 +18,12 @@ public interface DeptService {
      * @return 包含所有部门信息的List集合
      */
     List<Dept> list();
+
+    /**
+     * 删除指定ID的对象
+     *
+     * @param id 要删除的对象的ID
+     */
+    void delete(Integer id);
 }
 
