@@ -19,7 +19,7 @@ import java.util.logging.Logger;
  */
 @Slf4j
 @RestController
-@RequestMapping("/depts")
+//@RequestMapping("/depts")
 //@Api(value = "部门信息", tags = "部门管理")
 public class DeptController {
     // 注入DeptService接口的实现类，用于操作部门信息
@@ -33,7 +33,7 @@ public class DeptController {
  *
  * @return 返回一个成功的Result统一格式对象，表示操作成功
  */
-@GetMapping("/search")
+@GetMapping("/depts")
 // @ApiOperation("查询全部部门数据")
 public Result list(){
     // 记录查询全部部门数据的日志
