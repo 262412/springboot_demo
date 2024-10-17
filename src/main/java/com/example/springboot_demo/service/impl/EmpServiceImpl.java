@@ -60,7 +60,6 @@ public class EmpServiceImpl implements EmpService {
 
     /**
      * 添加新员工
-     *
      * 在添加员工信息前，设置员工的创建时间和更新时间确保员工信息的准确性和完整性
      *
      * @param emp 员工对象，包含员工的详细信息
@@ -70,6 +69,17 @@ public class EmpServiceImpl implements EmpService {
         emp.setUpdateTime(LocalDateTime.now());
         emp.setCreateTime(LocalDateTime.now());
         empMapper.add(emp);
+    }
+
+    /**
+     * 根据员工ID获取员工信息
+     *
+     * @param id 员工ID，用于查询特定员工的信息
+     * @return 返回指定ID的员工对象，如果找不到则返回null
+     */
+    @Override
+    public Emp getById(Integer id) {
+        return empMapper.getById(id);
     }
 
 }

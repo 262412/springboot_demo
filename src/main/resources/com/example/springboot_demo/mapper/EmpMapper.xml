@@ -13,8 +13,7 @@
     <!-- 删除员工信息 -->
     <delete id="delete">
         <!-- 删除emp表中指定id的员工信息 -->
-        from emp
-        where id in
+        delete from emp where id in
         <!-- 遍历传入的ids集合，每个id作为删除条件 -->
         <foreach collection="ids" item="id" separator="," open = "(" close = ")">
             #{id}
@@ -53,5 +52,22 @@
         </where>
         <!-- 按照update_time字段降序排序 -->
         order by update_time desc
+    </select>
+    <!--
+        查询员工信息
+
+        通过员工ID查询员工表(emp)中的所有列
+        使用#{id}占位符来传递员工ID，提高SQL的灵活性和安全性
+
+        参数:
+        - id: 员工的唯一标识符
+
+        返回值:
+        - com.example.springboot_demo.pojo.Emp: 对应员工ID的员工对象，如果找不到则返回null
+    -->
+    <select id="getById" resultType="com.example.springboot_demo.pojo.Emp">
+        select *
+        from emp
+        where id = #{id}
     </select>
 </mapper>

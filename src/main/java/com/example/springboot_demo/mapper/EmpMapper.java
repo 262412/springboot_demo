@@ -2,7 +2,6 @@ package com.example.springboot_demo.mapper;
 
 import com.example.springboot_demo.pojo.Emp;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -16,7 +15,6 @@ import java.util.List;
  */
 @Mapper
 public interface EmpMapper {
-
     //@Select("select count(*) from emp")
     //public Long count();
 
@@ -37,6 +35,7 @@ public interface EmpMapper {
      * @return 返回包含所有员工记录的列表，如果表中没有记录，则返回空列表
      */
     public List<Emp> list(String name, Short gender, LocalDate begin, LocalDate end);
+
     /**
      * 删除指定ID列表对应的数据
      *
@@ -50,4 +49,13 @@ public interface EmpMapper {
      * @param emp 要添加的员工对象
      */
     void add(Emp emp);
+
+    /**
+     * 根据ID获取员工信息
+     * 此方法用于从数据库中查询特定ID的员工详细信息
+     *
+     * @param id 员工ID，用于标识特定的员工
+     * @return 返回对应ID的员工对象，如果找不到则返回null
+     */
+    Emp getById(Integer id);
 }

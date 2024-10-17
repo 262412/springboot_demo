@@ -44,5 +44,14 @@ public interface EmpService {
      * @param emp 要添加的员工对象
      */
     void add(Emp emp);
+
+    /**
+     * 根据ID获取员工信息
+     * 此方法用于从数据库中查询特定ID的员工详细信息
+     *
+     * @param id 员工ID，用于标识特定的员工
+     * @return 返回对应ID的员工对象，如果找不到则返回null
+     */
+    Emp getById(Integer id);
 }
 

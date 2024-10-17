@@ -22,7 +22,7 @@ public class EmpController {
 
     // 注入EmpService接口的实现类，用于调用员工管理相关业务逻辑
     @Autowired
-    private EmpService empService;
+    private EmpService  empService;
 
     // 处理HTTP GET请求，路径为"/emps"，用于分页查询员工信息
     @GetMapping
@@ -59,5 +59,20 @@ public class EmpController {
         empService.add(emp);
         // 返回添加结果，表示操作成功
         return Result.success();
+    }
+    /**
+     * 根据ID查询员工信息的HTTP GET请求处理方法
+     *
+     * @param id 员工ID，从URL路径中获取
+     * @return 返回查询到的员工信息，封装在Result对象中
+     */
+    @GetMapping("/{id}")
+    public Result getById(@PathVariable Integer id){
+        // 记录根据ID查询员工信息的日志，包括员工ID
+        log.info("根据ID查询员工信息，id：{}", id);
+        // 调用EmpService的根据ID查询员工信息方法，传入员工ID，返回员工信息
+        Emp emp = empService.getById(id);
+        // 返回查询结果，封装为Result对象，表示操作成功，并携带员工信息
+        return Result.success(emp);
     }
 }
