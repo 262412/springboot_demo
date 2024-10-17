@@ -13,7 +13,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Slf4j
 @Component
+// 登录检查拦截器类，实现HandlerInterceptor接口，用于拦截请求并进行登录检查
 public class LoginCheckInterceptor implements HandlerInterceptor {
+
     /**
      * 在请求处理之前执行的拦截器方法
      * 该方法用于在控制器方法执行之前进行预处理操作，如初始化、身份验证等
@@ -26,13 +28,17 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        // 获取请求的URL
         String url = request.getRequestURL().toString();
         log.info("拦截请求的url：" + url);
+        // 检查URL是否包含"login"，如果是，则直接放行
         if (url.contains("login")) {
             log.info("登录请求，放行");
             return true;
         }
+        // 从请求头中获取JWT令牌
         String jwt = request.getHeader("token");
+        // 如果JWT为空，则返回未登录信息
         if (!StringUtils.hasLength(jwt)) {
             log.info("请求头token为空，返回未登录信息");
             Result error = Result.error("NOT_LOGIN");
@@ -40,6 +46,7 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
             response.getWriter().write(notlogin);
             return false;
         }
+        // 尝试解析JWT，如果解析失败，则返回未登录信息
         try {
             JwtUtils.parseJWT(jwt);
         } catch (Exception e) {
@@ -49,6 +56,7 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
             response.getWriter().write(notlogin);
             return false;
         }
+        // JWT验证通过，放行
         log.info("令牌合法，放行");
         return true;
     }
@@ -65,6 +73,7 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
      */
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+        // 此处可以添加postHandle的注释，但考虑到示例中的方法体未实现具体逻辑，故此处不提供注释
         System.out.println("postHandle");
     }
 
@@ -80,6 +89,7 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
      */
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+        // 此处可以添加afterCompletion的注释，但考虑到示例中的方法体未实现具体逻辑，故此处不提供注释
         System.out.println("afterCompletion");
     }
 }
