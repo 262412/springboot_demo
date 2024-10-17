@@ -103,4 +103,9 @@
         from emp
         where id = #{id}
     </select>
+    <select id="getByUsernameAndPassword" resultType="com.example.springboot_demo.pojo.Emp">
+        select *
+        from emp
+        where username = #{username} and password = #{password}
+    </select>
 </mapper>
