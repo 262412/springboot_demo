@@ -62,4 +62,6 @@ public interface EmpMapper {
     void update(Emp emp);
 
     Emp getByUsernameAndPassword(Emp emp);
+
+    void deleteByDeptId(Integer deptId);
 }

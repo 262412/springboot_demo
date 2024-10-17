@@ -52,6 +52,9 @@
             #{id}
         </foreach>
     </delete>
+    <delete id="deleteByDeptId">
+        delete from emp where dept_id = #{deptId}
+    </delete>
     <!--
         查询员工列表的SQL语句
         该语句使用动态SQL元素来根据传入的参数条件进行查询

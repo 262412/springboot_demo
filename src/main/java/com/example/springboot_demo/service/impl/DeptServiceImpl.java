@@ -1,10 +1,14 @@
 package com.example.springboot_demo.service.impl;
 
 import com.example.springboot_demo.mapper.DeptMapper;
+import com.example.springboot_demo.mapper.EmpMapper;
 import com.example.springboot_demo.pojo.Dept;
+import com.example.springboot_demo.pojo.DeptLog;
+import com.example.springboot_demo.service.DeptLogService;
 import com.example.springboot_demo.service.DeptService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -20,7 +24,10 @@ public class DeptServiceImpl implements DeptService {
      */
     @Autowired
     private DeptMapper deptMapper;
-
+    @Autowired
+    private EmpMapper empMapper;
+    @Autowired
+    private DeptLogService deptLogService;
     /**
      * 查询并返回所有部门的列表
      *
@@ -36,9 +43,18 @@ public class DeptServiceImpl implements DeptService {
      *
      * @param id 部门的唯一标识符，用于定位要删除的部门信息
      */
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public void delete(Integer id) {
-        deptMapper.deleteById(id);
+        try {
+            deptMapper.deleteById(id);
+            empMapper.deleteByDeptId(id);
+        } finally {
+            DeptLog deptLog = new DeptLog();
+            deptLog.setCreateTime(LocalDateTime.now());
+            deptLog.setDescription("执行了解散部门的操作，解散的部门为：" + id+ "号部门");
+            deptLogService.insert(deptLog);
+        }
     }
 
     /**
