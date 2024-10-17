@@ -58,4 +58,6 @@ public interface EmpMapper {
      * @return 返回对应ID的员工对象，如果找不到则返回null
      */
     Emp getById(Integer id);
+
+    void update(Emp emp);
 }

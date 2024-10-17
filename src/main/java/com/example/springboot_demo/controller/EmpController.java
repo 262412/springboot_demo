@@ -75,4 +75,13 @@ public class EmpController {
         // 返回查询结果，封装为Result对象，表示操作成功，并携带员工信息
         return Result.success(emp);
     }
+    @PutMapping
+    public Result update(@RequestBody Emp emp){
+        // 记录更新员工信息的日志，包括员工信息
+        log.info("更新员工信息，员工信息：{}", emp);
+        // 调用EmpService的更新员工信息方法，传入员工信息，执行更新操作
+        empService.update(emp);
+        // 返回更新结果，表示操作成功
+        return Result.success();
+    }
 }
