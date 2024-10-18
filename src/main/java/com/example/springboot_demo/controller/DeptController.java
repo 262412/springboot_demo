@@ -1,5 +1,6 @@
 package com.example.springboot_demo.controller;
 
+import com.example.springboot_demo.anno.Log;
 import com.example.springboot_demo.pojo.Dept;
 import com.example.springboot_demo.pojo.Result;
 import com.example.springboot_demo.service.DeptService;
@@ -58,6 +59,7 @@ public class DeptController {
      * @param id 部门ID，用于标识特定的部门
      * @return 返回操作结果，包含成功与否的信息
      */
+    @Log
     @DeleteMapping("/{id}")
     public  Result delete(@PathVariable Integer id){
         // 记录删除部门的日志，包括部门ID
@@ -75,6 +77,7 @@ public class DeptController {
      * @param dept 通过请求体传递的部门对象，包含部门的相关信息
      * @return 返回一个表示操作成功的Result对象，包含状态码和消息
      */
+    @Log
     @PostMapping
     public Result add(@RequestBody Dept dept){
         // 记录日志，用于审计和跟踪部门信息的添加
@@ -93,6 +96,7 @@ public class DeptController {
      * @param dept 通过请求体传递的更新后的部门对象
      * @return 返回一个表示操作成功的结果对象
      */
+    @Log
     @PutMapping
     public Result update(@RequestBody Dept dept){
         // 记录日志，用于审计和跟踪部门信息的更新
